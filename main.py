@@ -22,11 +22,11 @@ line_bot_api = LineBotApi('g9TEMiJ1wz9FER70S1GDtDo/1cdn1kw4GrJqH6H/jb2Dl/qXBzLyQ
 handler = WebhookHandler('7df54a8e601725208e7bda78be90d634')
 
 def db():
-    connection = psycopg2.connect(user="jgdzuegjyzrqki",
-                                        password="ee8990b454a75de5ef6a9f3232743cd0247b48430f6122efb9872c39b49ba629",
-                                        host="ec2-54-163-226-238.compute-1.amazonaws.com",
+    connection = psycopg2.connect(user="wauaiqrkqsuefu",
+                                        password="e7c10d0a0ff7f85b02ba84fb4260fe1629b1e467348f8f10dd4cd286223ccb84",
+                                        host="ec2-3-213-192-58.compute-1.amazonaws.com",
                                         port="5432",
-                                        database="denfkj5rv5tjoc")
+                                        database="da325phvld21q5")
     cursor = connection.cursor()
     return cursor
 
