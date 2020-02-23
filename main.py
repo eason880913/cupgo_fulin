@@ -15,6 +15,7 @@ import time
 import psycopg2
 import os
 import requests
+from bs4 import BeautifulSoup
 
 app = Flask(__name__)
 #access token
@@ -143,8 +144,18 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, image_message)
 
-    if '聯絡資訊' == msg:
-        ddd = TextSendMessage(text='Fb：XXXXXX\nGmail：XXXXXX@gmail.com\n電話：02—XXXX XXXX')
+    if '今日油價' == msg:
+        ans1 = requests.get('https://gas.goodlife.tw/')
+        ans1.encoding = 'utf-8'
+        soup1 = BeautifulSoup(ans1.text,'html.parser')
+        a = soup1.select("[id='cpc'] ul")[0].text
+        a=a.replace(' ','')
+        a=a.replace('\n','')
+        a=a.replace('92:','92油價:')
+        a=a.replace('95油價:','\n95油價:')
+        a=a.replace('98:','\n98油價:')
+        a=a.replace('柴油:','\n柴油油價:')
+        ddd = TextSendMessage(text=a)
         line_bot_api.reply_message(event.reply_token, ddd)
 
 if __name__ == "__main__":
