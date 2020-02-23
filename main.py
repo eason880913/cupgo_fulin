@@ -14,6 +14,7 @@ import re
 import time
 import psycopg2
 import os
+import requests
 
 app = Flask(__name__)
 #access token
@@ -130,8 +131,8 @@ def handle_message(event):
 
     if '查詢menu' == msg:
         image_message = ImageSendMessage(
-        original_content_url='https://i.imgur.com/NhcgDch.png',
-        preview_image_url='https://i.imgur.com/NhcgDch.png'
+        original_content_url='https://i.imgur.com/TtPRnen.jpg',
+        preview_image_url='https://i.imgur.com/TtPRnen.jpg'
         )
         line_bot_api.reply_message(event.reply_token, image_message)
 
