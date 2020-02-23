@@ -127,12 +127,21 @@ def handle_message(event):
         preview_image_url='https://imgur.com/Osi6gUd.jpg'
         )
         line_bot_api.reply_message(event.reply_token, image_message)
-    if '查詢班次' == msg:
+
+    if '查詢menu' == msg:
         image_message = ImageSendMessage(
-        original_content_url='https://imgur.com/fUlpm2P.jpg',
-        preview_image_url='https://imgur.com/MCWyo68.jpg'
+        original_content_url='https://i.imgur.com/NhcgDch.png',
+        preview_image_url='https://i.imgur.com/NhcgDch.png'
         )
         line_bot_api.reply_message(event.reply_token, image_message)
+
+    if '最近活動' == msg:
+        image_message = ImageSendMessage(
+        original_content_url='https://i.imgur.com/yxkG6KD.jpg',
+        preview_image_url='https://i.imgur.com/yxkG6KD.jpg'
+        )
+        line_bot_api.reply_message(event.reply_token, image_message)
+
     if '聯絡資訊' == msg:
         ddd = TextSendMessage(text='Fb：XXXXXX\nGmail：XXXXXX@gmail.com\n電話：02—XXXX XXXX')
         line_bot_api.reply_message(event.reply_token, ddd)
