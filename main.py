@@ -111,25 +111,6 @@ def buttons_message11():
 def handle_message(event):
     msg = event.message.text
     user_id = event.source.user_id  
-    if 'essaim880913' in msg:
-        rich_menu_id = 'richmenu-2cee31ae90f88cb370e04f9efe1ce952'
-        line_bot_api.link_rich_menu_to_user(user_id, rich_menu_id)
-    if '574983261' in msg:
-        rich_menu_id = 'richmenu-ed75132381729538800fc4ee274be208'
-        line_bot_api.link_rich_menu_to_user(user_id, rich_menu_id)
-    rich_menu_list = line_bot_api.get_rich_menu_list()
-    for rich_menu in rich_menu_list:
-        print(rich_menu.rich_menu_id)
-    if '查詢時刻表' == msg:
-        message = buttons_message11()
-        line_bot_api.reply_message(event.reply_token, message)
-    if '查詢營業日期' == msg:
-        image_message = ImageSendMessage(
-        original_content_url='https://imgur.com/HVn3HTo.jpg',
-        preview_image_url='https://imgur.com/Osi6gUd.jpg'
-        )
-        line_bot_api.reply_message(event.reply_token, image_message)
-
     if '查詢menu' == msg:
         image_message = ImageSendMessage(
         original_content_url='https://i.imgur.com/TtPRnen.jpg',
