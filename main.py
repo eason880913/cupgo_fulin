@@ -93,12 +93,12 @@ def buttons_message11():
         template=ConfirmTemplate(
             text='Are you sure?',
             actions=[
-                PostbackTemplateAction(
+                PostbackAction(
                     label='postback',
                     text='postback text',
                     data='action=buy&itemid=1'
                 ),
-                MessageTemplateAction(
+                MessageAction(
                     label='message',
                     text='message text'
                 )
