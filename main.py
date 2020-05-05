@@ -139,7 +139,7 @@ def handle_message(event):
         ddd = TextSendMessage(text=a)
         line_bot_api.reply_message(event.reply_token, ddd)
 
-    if 'ell' ==msg:
+    if '5555' ==msg:
         message = buttons_message11()
         line_bot_api.reply_message(event.reply_token, message)
 if __name__ == "__main__":
