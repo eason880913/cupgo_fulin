@@ -100,7 +100,7 @@ def buttons_message11():
                 ),
                 MessageAction(
                     label='message',
-                    text='message text'
+                    text='message text1 '
                 )
             ]
         )
