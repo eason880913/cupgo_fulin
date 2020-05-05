@@ -89,18 +89,18 @@ def drich_menu(id123):
 #時刻表
 def buttons_message11():
     message = TemplateSendMessage(
-        alt_text='查詢時刻表',
-        template=ButtonsTemplate(
-            title="查詢時刻表",
-            text="請問要查詢哪一個",
+        alt_text='Confirm template',
+        template=ConfirmTemplate(
+            text='Are you sure?',
             actions=[
-                MessageTemplateAction(
-                    label="營業日期",
-                    text="查詢營業日期"
+                PostbackTemplateAction(
+                    label='postback',
+                    text='postback text',
+                    data='action=buy&itemid=1'
                 ),
                 MessageTemplateAction(
-                    label="班次",
-                    text="查詢班次"
+                    label='message',
+                    text='message text'
                 )
             ]
         )
@@ -139,7 +139,7 @@ def handle_message(event):
         ddd = TextSendMessage(text=a)
         line_bot_api.reply_message(event.reply_token, ddd)
 
-    if '5555' ==msg:
+    if '5555' == msg:
         message = buttons_message11()
         line_bot_api.reply_message(event.reply_token, message)
 if __name__ == "__main__":
