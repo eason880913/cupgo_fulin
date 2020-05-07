@@ -160,6 +160,7 @@ def carousel_template_SendMessage_send_message():
             ]
         )
     )
+    return carousel_template_message
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
