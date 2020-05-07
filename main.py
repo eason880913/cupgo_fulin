@@ -107,6 +107,60 @@ def buttons_message11():
     )
     return message
 
+def carousel_template_SendMessage_send_message():
+    # 這是一個傳送 輪播的模板，架構解說
+    carousel_template_message = TemplateSendMessage(
+        alt_text = '我是一個輪播模板',  # 通知訊息的名稱
+        template = CarouselTemplate(
+            # culumns 是一個父親
+            columns = [
+                # 這是我第一個兒子 
+                CarouselColumn(
+                    thumbnail_image_url = 'http://shareboxnow.com/wp-content/uploads/2020/02/IMG_5601.jpg',  # 呈現圖片
+                    title = '這是一隻貓頭鷹',  # 你要顯示的標題
+                    text = '想養嗎？',  # 你想問的問題或是敘述
+                    actions = [
+                        PostbackAction(
+                            label = '養',  # 顯示的文字
+                            display_text = '對不起，這不是我的',  # 回覆的文字
+                            data = 'action=buy&itemid=1'  # 取得資料？
+                        ),
+                        MessageAction(
+                            label = '不養',  # 顯示的文字 
+                            text = '好喔！沒問題'  # 回覆的文字
+                        ),
+                        URIAction(
+                            label = '這是我的網址',  # 顯示的文字 
+                            uri = 'http://shareboxnow.com/'   # 跳轉的url
+                        )
+                    ]
+                ),
+                # 這是我第二個兒子，下面的都跟上面一樣，只是內容稍為不同，如果想嘗試可以多複製一個看看唷！ 
+                # 記得要在父親裡面，不然你就沒有父親了，就會報錯還有 , 要特別注意
+                CarouselColumn(
+                    thumbnail_image_url = 'http://shareboxnow.com/wp-content/uploads/2020/02/IMG_5599.jpg',
+                    title = '我還是貓頭鷹',
+                    text = '想喂我吃東西嗎？',
+                    actions = [
+                        PostbackAction(
+                            label = '想',
+                            display_text = '但我不想吃',
+                            data = 'action=buy&itemid=2'
+                        ),
+                        MessageAction(
+                            label = '不想',
+                            text = '我剛好也不餓，謝謝你'
+                        ),
+                        URIAction(
+                            label = '這還是我的網址 哈',
+                            uri = 'http://shareboxnow.com/'
+                        )
+                    ]
+                )
+            ]
+        )
+    )
+
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
@@ -141,6 +195,10 @@ def handle_message(event):
 
     if '5555' == msg:
         message = buttons_message11()
+        line_bot_api.reply_message(event.reply_token, message)
+
+    if 't1' ==msg:
+        message = carousel_template_SendMessage_send_message()
         line_bot_api.reply_message(event.reply_token, message)
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
