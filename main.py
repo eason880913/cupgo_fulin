@@ -194,11 +194,11 @@ def handle_message(event):
         ddd = TextSendMessage(text=a)
         line_bot_api.reply_message(event.reply_token, ddd)
 
-    if '5555' == msg:
+    if '555' == msg:
         message = buttons_message11()
         line_bot_api.reply_message(event.reply_token, message)
 
-    if 't1' ==msg:
+    if '1111' == msg:
         message = carousel_template_SendMessage_send_message()
         line_bot_api.reply_message(event.reply_token, message)
 if __name__ == "__main__":
