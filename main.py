@@ -199,9 +199,17 @@ def Carousel_Template():
                     title='清空購物車',
                     text='是否確定清空購物車',
                     actions=[
+                        PostbackTemplateAction(
+                            label='回傳一個訊息',
+                            data='這是ID=3'
+                        ),
                         MessageTemplateAction(
                             label='是',
-                            text='清空我的購物車' 
+                            text='清空我的購物車'
+                        ),
+                        URITemplateAction(
+                            label='uri2',
+                            uri='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Number_3_in_yellow_rounded_square.svg/200px-Number_3_in_yellow_rounded_square.svg.png'
                         )
                     ]
                 )
