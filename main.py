@@ -132,60 +132,72 @@ def ButtonsTemplate_send_message():
     )
     return buttons_template
 
-def carousel_template_SendMessage_send_message():
-    # 這是一個傳送 輪播的模板，架構解說
-    carousel_template_message = TemplateSendMessage(
-        alt_text = '我是一個輪播模板',  # 通知訊息的名稱
-        template = CarouselTemplate(
-            # culumns 是一個父親
-            columns = [
-                # 這是我第一個兒子 
+def Carousel_Template():
+    message = TemplateSendMessage(
+        alt_text='一則旋轉木馬按鈕訊息',
+        template=CarouselTemplate(
+            columns=[
                 CarouselColumn(
-                    thumbnail_image_url = 'http://shareboxnow.com/wp-content/uploads/2020/02/IMG_5601.jpg',  # 呈現圖片
-                    title = '這是一隻貓頭鷹',  # 你要顯示的標題
-                    text = '想養嗎？',  # 你想問的問題或是敘述
-                    actions = [
-                        PostbackAction(
-                            label = '養',  # 顯示的文字
-                            display_text = '對不起，這不是我的',  # 回覆的文字
-                            data = 'action=buy&itemid=1'  # 取得資料？
+                    thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Number_1_in_green_rounded_square.svg/200px-Number_1_in_green_rounded_square.svg.png',
+                    title='這是第一塊模板',
+                    text='一個模板可以有三個按鈕',
+                    actions=[
+                        PostbackTemplateAction(
+                            label='回傳一個訊息',
+                            data='將這個訊息偷偷回傳給機器人'
                         ),
-                        MessageAction(
-                            label = '不養',  # 顯示的文字 
-                            text = '好喔！沒問題'  # 回覆的文字
+                        MessageTemplateAction(
+                            label='用戶發送訊息',
+                            text='我知道這是1'
                         ),
-                        URIAction(
-                            label = '這是我的網址',  # 顯示的文字 
-                            uri = 'http://shareboxnow.com/'   # 跳轉的url
+                        URITemplateAction(
+                            label='進入1的網頁',
+                            uri='https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Number_1_in_green_rounded_square.svg/200px-Number_1_in_green_rounded_square.svg.png'
                         )
                     ]
                 ),
-                # 這是我第二個兒子，下面的都跟上面一樣，只是內容稍為不同，如果想嘗試可以多複製一個看看唷！ 
-                # 記得要在父親裡面，不然你就沒有父親了，就會報錯還有 , 要特別注意
                 CarouselColumn(
-                    thumbnail_image_url = 'http://shareboxnow.com/wp-content/uploads/2020/02/IMG_5599.jpg',
-                    title = '我還是貓頭鷹',
-                    text = '想喂我吃東西嗎？',
-                    actions = [
-                        PostbackAction(
-                            label = '想',
-                            display_text = '但我不想吃',
-                            data = 'action=buy&itemid=2'
+                    thumbnail_image_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuo7n2_HNSFuT3T7Z9PUZmn1SDM6G6-iXfRC3FxdGTj7X1Wr0RzA',
+                    title='這是第二塊模板',
+                    text='副標題可以自己改',
+                    actions=[
+                        PostbackTemplateAction(
+                            label='回傳一個訊息',
+                            data='這是ID=2'
                         ),
-                        MessageAction(
-                            label = '不想',
-                            text = '我剛好也不餓，謝謝你'
+                        MessageTemplateAction(
+                            label='用戶發送訊息',
+                            text='我知道這是2'
                         ),
-                        URIAction(
-                            label = '這還是我的網址 哈',
-                            uri = 'http://shareboxnow.com/'
+                        URITemplateAction(
+                            label='進入2的網頁',
+                            uri='https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Number_2_in_light_blue_rounded_square.svg/200px-Number_2_in_light_blue_rounded_square.svg.png'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Number_3_in_yellow_rounded_square.svg/200px-Number_3_in_yellow_rounded_square.svg.png',
+                    title='這是第三個模塊',
+                    text='最多可以放十個',
+                    actions=[
+                        PostbackTemplateAction(
+                            label='回傳一個訊息',
+                            data='這是ID=3'
+                        ),
+                        MessageTemplateAction(
+                            label='用戶發送訊息',
+                            text='我知道這是3'
+                        ),
+                        URITemplateAction(
+                            label='uri2',
+                            uri='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Number_3_in_yellow_rounded_square.svg/200px-Number_3_in_yellow_rounded_square.svg.png'
                         )
                     ]
                 )
             ]
         )
     )
-    return carousel_template_message
+    return message
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
@@ -224,7 +236,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, message)
 
     if '1111' == msg:
-        message = carousel_template_SendMessage_send_message()
+        message = Carousel_Template()
         line_bot_api.reply_message(event.reply_token, message)
     
     if '2222' == msg:
