@@ -196,20 +196,20 @@ def Carousel_Template():
                 ),
                 CarouselColumn(
                     # thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Number_3_in_yellow_rounded_square.svg/200px-Number_3_in_yellow_rounded_square.svg.png',
-                    title='清空購物車',
-                    text='是否確定清空購物車',
+                    title='購物車',
+                    text='請選擇您要的操作',
                     actions=[
                         PostbackTemplateAction(
-                            label='回傳一個訊息',
-                            data='這是ID=3'
+                            label='查詢我的購物車',
+                            data='這是ID=4-1'
                         ),
-                        MessageTemplateAction(
-                            label='是',
-                            text='清空我的購物車'
+                        PostbackTemplateAction(
+                            label='清空我的購物車',
+                            data='這是ID=4-2'
                         ),
-                        URITemplateAction(
-                            label='uri2',
-                            uri='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Number_3_in_yellow_rounded_square.svg/200px-Number_3_in_yellow_rounded_square.svg.png'
+                        PostbackTemplateAction(
+                            label='送出我的購物車',
+                            data='這是ID=4-3'
                         )
                     ]
                 )
