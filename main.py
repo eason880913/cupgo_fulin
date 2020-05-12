@@ -132,7 +132,7 @@ def ButtonsTemplate_send_message():
     )
     return buttons_template
 
-def Carousel_Template():
+def menu_Carousel_Template():
     message = TemplateSendMessage(
         alt_text='一則旋轉木馬按鈕訊息',
         template=CarouselTemplate(
@@ -246,7 +246,7 @@ def handle_message(event):
         a=a.replace('92:','92油價:')
         a=a.replace('95油價:','\n95油價:')
         a=a.replace('98:','\n98油價:')
-        a=a.replace('柴油:','\n柴油油價:')
+        a=a.replace('柴油:','\n柴油油價:')  
         ddd = TextSendMessage(text=a)
         line_bot_api.reply_message(event.reply_token, ddd)
 
@@ -254,8 +254,8 @@ def handle_message(event):
         message = buttons_message11()
         line_bot_api.reply_message(event.reply_token, message)
 
-    if '1111' == msg:
-        message = Carousel_Template()
+    if '線上點餐' == msg:
+        message = menu_Carousel_Template()
         line_bot_api.reply_message(event.reply_token, message)
     
     if '2222' == msg:
