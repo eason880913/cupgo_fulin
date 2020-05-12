@@ -177,20 +177,20 @@ def Carousel_Template():
                 ),
                 CarouselColumn(
                     # thumbnail_image_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuo7n2_HNSFuT3T7Z9PUZmn1SDM6G6-iXfRC3FxdGTj7X1Wr0RzA',
-                    title='這是第二塊模板',
-                    text='副標題可以自己改',
+                    title='美式咖啡',
+                    text='請選擇您要的商品',
                     actions=[
-                        PostbackTemplateAction(
-                            label='回傳一個訊息',
-                            data='這是ID=2'
+                        MessageTemplateAction(
+                            label='Hot/S $35',
+                            text='訂購小杯熱美式'
                         ),
                         MessageTemplateAction(
-                            label='用戶發送訊息',
-                            text='我知道這是2'
+                            label='Hot/M $45',
+                            text='訂購中杯熱美式'
                         ),
-                        URITemplateAction(
-                            label='進入2的網頁',
-                            uri='https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Number_2_in_light_blue_rounded_square.svg/200px-Number_2_in_light_blue_rounded_square.svg.png'
+                        MessageTemplateAction(
+                            label='Ice/M $45',
+                            text='訂購中杯冰美式'
                         )
                     ]
                 ),
@@ -199,17 +199,17 @@ def Carousel_Template():
                     title='購物車',
                     text='請選擇您要的操作',
                     actions=[
-                        PostbackTemplateAction(
+                        MessageTemplateAction(
                             label='查詢我的購物車',
-                            data='這是ID=4-1'
+                            text='查詢我的購物車'
                         ),
-                        PostbackTemplateAction(
+                        MessageTemplateAction(
                             label='清空我的購物車',
-                            data='這是ID=4-2'
+                            text='清空我的購物車'
                         ),
-                        PostbackTemplateAction(
+                        MessageTemplateAction(
                             label='送出我的購物車',
-                            data='這是ID=4-3'
+                            text='送出我的購物車'
                         )
                     ]
                 )
