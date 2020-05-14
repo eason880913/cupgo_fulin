@@ -31,6 +31,7 @@ def db():
                                         database="da325phvld21q5")
     cursor = connection.cursor()
     return cursor
+cursor = db()
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -108,7 +109,6 @@ def buttons_message11():
     return message
 
 def ButtonsTemplate_send_message(product):
-    cursor = db()
 # 這是一個傳送按鈕的模板，架構解說
     buttons_template = TemplateSendMessage(
         alt_text='CUP&GO_預購訊息',
@@ -118,19 +118,19 @@ def ButtonsTemplate_send_message(product):
             actions=[
                 MessageTemplateAction(
                     label='1',
-                    text='ButtonsTemplate'
+                    text=f'將1個{product}放入購物車'
                 ),
                 MessageTemplateAction(
                     label='2',
-                    text='ButtonsTemplate'
+                    text=f'將2個{product}放入購物車'
                 ),
                 MessageTemplateAction(
                     label='3',
-                    text='ButtonsTemplate'
+                    text=f'將3個{product}放入購物車'
                 ),
                 MessageTemplateAction(
                     label='4',
-                    text='ButtonsTemplate'
+                    text=f'將4個{product}放入購物車'
                 )
             ]
         )
@@ -296,6 +296,9 @@ def handle_message(event):
         message = ButtonsTemplate_send_message(product)
         line_bot_api.reply_message(event.reply_token, message)
 
+    if '放入購物車' in msg:
+        message = TextSendMessage(text='OK')
+        line_bot_api.reply_message(event.reply_token, message)
 
 
 if __name__ == "__main__":
