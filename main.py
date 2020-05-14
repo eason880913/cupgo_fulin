@@ -108,6 +108,7 @@ def buttons_message11():
     return message
 
 def ButtonsTemplate_send_message(product):
+    cursor = db()
 # 這是一個傳送按鈕的模板，架構解說
     buttons_template = TemplateSendMessage(
         alt_text='CUP&GO_預購訊息',
