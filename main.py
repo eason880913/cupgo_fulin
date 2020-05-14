@@ -106,6 +106,7 @@ def buttons_message11():
         )
     )
     return message
+
 def ButtonsTemplate_send_message(product):
 # 這是一個傳送按鈕的模板，架構解說
     buttons_template = TemplateSendMessage(
@@ -262,7 +263,8 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, message)
     
     if '訂購原味鬆餅' == msg:
-        message = ButtonsTemplate_send_message('原味鬆餅')
+        product = '原味鬆餅'
+        message = ButtonsTemplate_send_message(product)
         line_bot_api.reply_message(event.reply_token, message)
 
 
