@@ -266,6 +266,35 @@ def handle_message(event):
         product = '原味鬆餅'
         message = ButtonsTemplate_send_message(product)
         line_bot_api.reply_message(event.reply_token, message)
+    if '訂購巧克力鬆餅' == msg:
+        product = '巧克力鬆餅'
+        message = ButtonsTemplate_send_message(product)
+        line_bot_api.reply_message(event.reply_token, message)
+    if '訂購小杯熱拿鐵' == msg:
+        product = '小杯熱拿鐵'
+        message = ButtonsTemplate_send_message(product)
+        line_bot_api.reply_message(event.reply_token, message)
+    if '訂購中杯熱拿鐵' == msg:
+        product = '中杯熱拿鐵'
+        message = ButtonsTemplate_send_message(product)
+        line_bot_api.reply_message(event.reply_token, message)
+    if '訂購中杯冰拿鐵' == msg:
+        product = '中杯冰拿鐵'
+        message = ButtonsTemplate_send_message(product)
+        line_bot_api.reply_message(event.reply_token, message)
+    if '訂購小杯熱美式' == msg:
+        product = '小杯熱美式'
+        message = ButtonsTemplate_send_message(product)
+        line_bot_api.reply_message(event.reply_token, message)
+    if '訂購中杯熱美式' == msg:
+        product = '中杯熱美式'
+        message = ButtonsTemplate_send_message(product)
+        line_bot_api.reply_message(event.reply_token, message)
+    if '訂購中杯冰美式' == msg:
+        product = '中杯冰美式'
+        message = ButtonsTemplate_send_message(product)
+        line_bot_api.reply_message(event.reply_token, message)
+
 
 
 if __name__ == "__main__":
