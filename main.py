@@ -106,26 +106,29 @@ def buttons_message11():
         )
     )
     return message
-def ButtonsTemplate_send_message():
+def ButtonsTemplate_send_message(product):
 # 這是一個傳送按鈕的模板，架構解說
     buttons_template = TemplateSendMessage(
-        alt_text='Buttons Template',
+        alt_text='CUP&GO 預購訊息',
         template=ButtonsTemplate(
-            title='這是ButtonsTemplate',
-            text='ButtonsTemplate可以傳送text,uri',
+            title=f'將您要的{product}加入購物車',
+            text='請選擇您要的數量',
             actions=[
                 MessageTemplateAction(
-                    label='ButtonsTemplate',
+                    label='1,
                     text='ButtonsTemplate'
                 ),
                 MessageTemplateAction(
-                    label='VIDEO1',
-                    text='影片網址'
+                    label='2,
+                    text='ButtonsTemplate'
                 ),
-                PostbackTemplateAction(
-                    label='postback',
-                    text='postback text',
-                    data='postback1'
+                MessageTemplateAction(
+                    label='3,
+                    text='ButtonsTemplate'
+                ),
+                MessageTemplateAction(
+                    label='4,
+                    text='ButtonsTemplate'
                 )
             ]
         )
@@ -134,7 +137,7 @@ def ButtonsTemplate_send_message():
 
 def menu_Carousel_Template():
     message = TemplateSendMessage(
-        alt_text='一則旋轉木馬按鈕訊息',
+        alt_text='CUP&GO 預購訊息',
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
@@ -258,8 +261,8 @@ def handle_message(event):
         message = menu_Carousel_Template()
         line_bot_api.reply_message(event.reply_token, message)
     
-    if '2222' == msg:
-        message = ButtonsTemplate_send_message()
+    if '訂購原味鬆餅' == msg:
+        message = ButtonsTemplate_send_message('原味鬆餅')
         line_bot_api.reply_message(event.reply_token, message)
 
 
