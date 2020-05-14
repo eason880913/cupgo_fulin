@@ -298,6 +298,8 @@ def handle_message(event):
 
     if '放入購物車' in msg:
         message = TextSendMessage(text='OK')
+        cursor.execute(f'INSERT INTO "public"."main" ("uid","choco_cake")'+f"VALUES ('{user_id}', '1');")
+        cursor.execute("COMMIT")
         line_bot_api.reply_message(event.reply_token, message)
 
 
