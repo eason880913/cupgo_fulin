@@ -110,25 +110,25 @@ def buttons_message11():
 def ButtonsTemplate_send_message(product):
 # 這是一個傳送按鈕的模板，架構解說
     buttons_template = TemplateSendMessage(
-        alt_text='CUP&GO 預購訊息',
+        alt_text='CUP&GO_預購訊息',
         template=ButtonsTemplate(
             title=f'將您要的{product}加入購物車',
             text='請選擇您要的數量',
             actions=[
                 MessageTemplateAction(
-                    label='1,
+                    label='1',
                     text='ButtonsTemplate'
                 ),
                 MessageTemplateAction(
-                    label='2,
+                    label='2',
                     text='ButtonsTemplate'
                 ),
                 MessageTemplateAction(
-                    label='3,
+                    label='3',
                     text='ButtonsTemplate'
                 ),
                 MessageTemplateAction(
-                    label='4,
+                    label='4',
                     text='ButtonsTemplate'
                 )
             ]
@@ -138,7 +138,7 @@ def ButtonsTemplate_send_message(product):
 
 def menu_Carousel_Template():
     message = TemplateSendMessage(
-        alt_text='CUP&GO 預購訊息',
+        alt_text='CUP&GO_預購訊息',
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
