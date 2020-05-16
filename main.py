@@ -88,7 +88,7 @@ def drich_menu(id123):
  
     return 'OK', 200
 #時刻表
-def buttons_message11():
+def buttons_message11(sendtime):
     message = TemplateSendMessage(
         alt_text='Confirm template',
         template=ConfirmTemplate(
@@ -96,7 +96,7 @@ def buttons_message11():
             actions=[
                 MessageAction(
                     label='確認',
-                    text='確認送出購物車'
+                    text=f'確認送出購物車,{sendtime}後取餐'
                 ),
                 MessageAction(
                     label='稍後一下好了',
@@ -284,7 +284,9 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, ddd)
 
     if '分鐘後取餐' in msg:
-        message = buttons_message11()
+        msg = re.findall('\\d',msg)
+        num = msg[0]
+        message = buttons_message11(num)
         line_bot_api.reply_message(event.reply_token, message)
 
     if '線上點餐' == msg:
