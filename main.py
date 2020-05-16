@@ -264,7 +264,7 @@ def handle_message(event):
             cursor.execute(f'INSERT INTO "public"."main" ("uid","choco_cake","origin_cake","honey_cake","hm_latte","hs_latte","im_latte","hm_coffee","hs_coffee","im_coffee","time")'+f"VALUES ('{user_id}','0','0','0','0','0','0','0','0','0','0');")
             cursor.execute("COMMIT")
         except:
-            print('fail')
+            # print('fail')
             cursor.execute("ROLLBACK")
         message = menu_Carousel_Template()
         line_bot_api.reply_message(event.reply_token, message)
@@ -414,7 +414,7 @@ def handle_message(event):
             txt = ''
             lsit = [0,'巧克力鬆餅','原味鬆餅','蜂蜜鬆餅','中杯熱拿鐵','小杯熱拿鐵','中杯冰拿鐵','中杯熱美式','小杯熱美式','中杯冰美式']
             for j in range(1,len(i)):
-                if i[j] == '0':
+                if str(i[j]) == '0':
                     continue
                 txt = txt+str(i[j])+'個'+str(lsit[j]+',')
                 price = price + int(price_list[j])*int(i[j])
