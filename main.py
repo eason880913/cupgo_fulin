@@ -514,8 +514,10 @@ def handle_message(event):
             if txt == ',共計0元':
                 txt = '購物車裡沒有任何商品'
             message = f'顧客編號（{user_id}）'+str(txt)+f"{num}0分鐘後取餐"
-        token = 'ElXeVpTWhTv6mWIuEYOyUP7NPlFRw3jOVWNT54Pa6s1' #for cup%go
+        token = 'bMehRmUFrwZziaZJmHOqkF5Xen4QmMh0bVz6TlHFaqq' #for 測試
         lineNotifyMessage(token, message)
+        message = TextSendMessage(text='您的預購訂單已成功，請務必來取餐喔')
+        line_bot_api.reply_message(event.reply_token, message)
     
 
 if __name__ == "__main__":
