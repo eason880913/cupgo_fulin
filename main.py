@@ -98,7 +98,7 @@ def lineNotifyMessage(token, msg):
     r = requests.post("https://notify-api.line.me/api/notify", headers = headers, params = payload)
     return r.status_code
 
-def buttons_message11():
+def buttons_message11(sendtime):
     message = TemplateSendMessage(
         alt_text='Confirm template',
         template=ConfirmTemplate(
@@ -106,7 +106,7 @@ def buttons_message11():
             actions=[
                 MessageAction(
                     label='確認',
-                    text='確認送出購物車'
+                    text=f'確認送出購物車,{sendtime}後取餐'
                 ),
                 MessageAction(
                     label='稍後一下好了',
