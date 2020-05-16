@@ -261,7 +261,7 @@ def handle_message(event):
 
     if '線上點餐' == msg:
         try:
-            cursor.execute(f'INSERT INTO "public"."main" ("uid","choco_cake","origin_cake","honey_cake","hm_latte","hs_latte","im_latte","hm_coffee","hs_coffee","im_coffee","time")'+f"VALUES ('{uid}','0','0','0','0','0','0','0','0','0','0');")
+            cursor.execute(f'INSERT INTO "public"."main" ("uid","choco_cake","origin_cake","honey_cake","hm_latte","hs_latte","im_latte","hm_coffee","hs_coffee","im_coffee","time")'+f"VALUES ('{user_id}','0','0','0','0','0','0','0','0','0','0');")
             cursor.execute("COMMIT")
         except:
             print('fail')
