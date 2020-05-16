@@ -98,6 +98,25 @@ def lineNotifyMessage(token, msg):
     r = requests.post("https://notify-api.line.me/api/notify", headers = headers, params = payload)
     return r.status_code
 
+def buttons_message11():
+    message = TemplateSendMessage(
+        alt_text='Confirm template',
+        template=ConfirmTemplate(
+            text='確認要送出購物車嗎?',
+            actions=[
+                MessageAction(
+                    label='確認',
+                    text='確認送出購物車'
+                ),
+                MessageAction(
+                    label='稍後一下好了',
+                    text='線上點餐'
+                )
+            ]
+        )
+    )
+    return message
+
 def ButtonsTemplate_time():
 # 這是一個傳送按鈕的模板，架構解說
     buttons_template = TemplateSendMessage(
