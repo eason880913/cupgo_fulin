@@ -272,9 +272,6 @@ def handle_message(event):
     if '已加入購物車' == msg:
         message = menu_Carousel_Template()
         line_bot_api.reply_message(event.reply_token, message)
-    if '已清空購物車' == msg:
-        message = menu_Carousel_Template()
-        line_bot_api.reply_message(event.reply_token, message)
 
 
     if '訂購原味鬆餅' == msg:
@@ -420,6 +417,8 @@ def handle_message(event):
                 price = price + int(price_list[j])*int(i[j])
             txt = re.sub(',$','',txt)    
             txt = txt+',共計'+str(price)+'元'
+            if txt == ',共計0元':
+                txt = '購物車裡沒有任何商品'
             message = TextSendMessage(text=txt)
             line_bot_api.reply_message(event.reply_token, message)
 
@@ -430,6 +429,7 @@ def handle_message(event):
         cursor.execute("COMMIT")
         message = TextSendMessage(text='已清空購物車')
         line_bot_api.reply_message(event.reply_token, message)
+        
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
