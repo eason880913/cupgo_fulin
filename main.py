@@ -518,7 +518,10 @@ def handle_message(event):
         lineNotifyMessage(token, message)
         message = TextSendMessage(text='您的預購訂單已成功，請務必來取餐喔')
         line_bot_api.reply_message(event.reply_token, message)
-    
+        cursor.execute(f'DELETE FROM "public"."main" WHERE "uid"'+f" = '{user_id}';")
+        cursor.execute("COMMIT")
+        cursor.execute(f'INSERT INTO "public"."main" ("uid","choco_cake","origin_cake","honey_cake","hm_latte","hs_latte","im_latte","hm_coffee","hs_coffee","im_coffee","time")'+f"VALUES ('{user_id}','0','0','0','0','0','0','0','0','0','0');")
+        cursor.execute("COMMIT")
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
