@@ -87,25 +87,16 @@ def drich_menu(id123):
     line_bot_api.delete_rich_menu(rich_menu_id)
  
     return 'OK', 200
-#時刻表
-def buttons_message11(sendtime):
-    message = TemplateSendMessage(
-        alt_text='Confirm template',
-        template=ConfirmTemplate(
-            text='確認要送出購物車嗎?',
-            actions=[
-                MessageAction(
-                    label='確認',
-                    text=f'確認送出購物車,{sendtime}後取餐'
-                ),
-                MessageAction(
-                    label='稍後一下好了',
-                    text='線上點餐'
-                )
-            ]
-        )
-    )
-    return message
+
+def lineNotifyMessage(token, msg):
+    headers = {
+        "Authorization": "Bearer " + token, 
+        "Content-Type" : "application/x-www-form-urlencoded"
+    }
+
+    payload = {'message': msg}
+    r = requests.post("https://notify-api.line.me/api/notify", headers = headers, params = payload)
+    return r.status_code
 
 def ButtonsTemplate_time():
 # 這是一個傳送按鈕的模板，架構解說
@@ -461,9 +452,51 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, message)
 
     if '送出我的購物車' == msg:
-        message = ButtonsTemplate_time()
-        line_bot_api.reply_message(event.reply_token, message)
+        cursor.execute(f'SELECT * FROM "public"."main";')
+        data = cursor.fetchall()
+        for i in data:
+            price = 0
+            price_list = [0,40,35,40,45,35,45,45,35,45]
+            txt = ''
+            lsit = [0,'巧克力鬆餅','原味鬆餅','蜂蜜鬆餅','中杯熱拿鐵','小杯熱拿鐵','中杯冰拿鐵','中杯熱美式','小杯熱美式','中杯冰美式']
+            for j in range(1,len(i)):
+                if str(i[j]) == '0':
+                    continue
+                txt = txt+str(i[j])+'個'+str(lsit[j]+',')
+                price = price + int(price_list[j])*int(i[j])
+            txt = re.sub(',$','',txt)    
+            txt = txt+',共計'+str(price)+'元'
+            if txt == ',共計0元':
+                txt = '購物車裡沒有任何商品'
+        if txt == '購物車裡沒有任何商品':
+            message = TextSendMessage(text='購物車裡沒有任何商品')
+            line_bot_api.reply_message(event.reply_token, message)
+        else:
+            message = ButtonsTemplate_time()
+            line_bot_api.reply_message(event.reply_token, message)
     
+    if '確認送出購物車' in msg:
+        msg = re.findall('\\d',msg)
+        num = msg[0]#單個字
+        cursor.execute(f'SELECT * FROM "public"."main";')
+        data = cursor.fetchall()
+        for i in data:
+            price = 0
+            price_list = [0,40,35,40,45,35,45,45,35,45]
+            txt = ''
+            lsit = [0,'巧克力鬆餅','原味鬆餅','蜂蜜鬆餅','中杯熱拿鐵','小杯熱拿鐵','中杯冰拿鐵','中杯熱美式','小杯熱美式','中杯冰美式']
+            for j in range(1,len(i)):
+                if str(i[j]) == '0':
+                    continue
+                txt = txt+str(i[j])+'個'+str(lsit[j]+',')
+                price = price + int(price_list[j])*int(i[j])
+            txt = re.sub(',$','',txt)    
+            txt = txt+',共計'+str(price)+'元'
+            if txt == ',共計0元':
+                txt = '購物車裡沒有任何商品
+            message = f'顧客編號（{user_id}）'+str(txt)+f"{num}0分鐘後取餐"
+        token = 'ElXeVpTWhTv6mWIuEYOyUP7NPlFRw3jOVWNT54Pa6s1' #for cup%go
+        lineNotifyMessage(token, message)
     
 
 if __name__ == "__main__":
