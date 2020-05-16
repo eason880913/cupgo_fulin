@@ -108,6 +108,35 @@ def buttons_message11():
     )
     return message
 
+def ButtonsTemplate_time():
+# 這是一個傳送按鈕的模板，架構解說
+    buttons_template = TemplateSendMessage(
+        alt_text='CUP&GO_預購訊息',
+        template=ButtonsTemplate(
+            title=f'請選擇幾分鐘後要取餐',
+            text='請選擇您要的時間',
+            actions=[
+                MessageTemplateAction(
+                    label='10分鐘後取餐',
+                    text=f'送出購物車10分鐘後取餐'
+                ),
+                MessageTemplateAction(
+                    label='20分鐘後取餐',
+                    text=f'送出購物車20分鐘後取餐'
+                ),
+                MessageTemplateAction(
+                    label='30分鐘後取餐',
+                    text=f'送出購物車30分鐘後取餐'
+                ),
+                MessageTemplateAction(
+                    label='回去繼續選購',
+                    text=f'線上點餐'
+                )
+            ]
+        )
+    )
+    return buttons_template
+
 def ButtonsTemplate_send_message(product):
 # 這是一個傳送按鈕的模板，架構解說
     buttons_template = TemplateSendMessage(
@@ -429,6 +458,11 @@ def handle_message(event):
         cursor.execute("COMMIT")
         message = TextSendMessage(text='已清空購物車')
         line_bot_api.reply_message(event.reply_token, message)
+
+    if '送出我的購物車' == msg:
+        message = ButtonsTemplate_time()
+        line_bot_api.reply_message(event.reply_token, message)
+    
         
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
