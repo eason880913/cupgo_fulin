@@ -301,6 +301,16 @@ def handle_message(event):
         message = ButtonsTemplate_send_message(product)
         line_bot_api.reply_message(event.reply_token, message)
 
+    if '原味鬆餅放入購物車' in msg:
+        msg = re.findall('\\d',msg)
+        num = msg[0]
+        message = TextSendMessage(text='已加入購物車')
+        cursor.execute(f'SELECT origin_cake FROM "public"."main" WHERE "uid"'+ f"= '{user_id}';")
+        data = cursor.fetchall()
+        num = int(data[0][0])+int(num)
+        cursor.execute(f'UPDATE "public"."main" SET "origin"'+f"= '{num}'"+'WHERE "uid"'+f" = '{user_id}';")
+        cursor.execute("COMMIT")
+        line_bot_api.reply_message(event.reply_token, message)
     if '巧克力鬆餅放入購物車' in msg:
         msg = re.findall('\\d',msg)
         num = msg[0]
@@ -309,6 +319,76 @@ def handle_message(event):
         data = cursor.fetchall()
         num = int(data[0][0])+int(num)
         cursor.execute(f'UPDATE "public"."main" SET "choco_cake"'+f"= '{num}'"+'WHERE "uid"'+f" = '{user_id}';")
+        cursor.execute("COMMIT")
+        line_bot_api.reply_message(event.reply_token, message)
+    if '蜂蜜鬆餅放入購物車' in msg:
+        msg = re.findall('\\d',msg)
+        num = msg[0]
+        message = TextSendMessage(text='已加入購物車')
+        cursor.execute(f'SELECT honey_cake FROM "public"."main" WHERE "uid"'+ f"= '{user_id}';")
+        data = cursor.fetchall()
+        num = int(data[0][0])+int(num)
+        cursor.execute(f'UPDATE "public"."main" SET "honey_cake"'+f"= '{num}'"+'WHERE "uid"'+f" = '{user_id}';")
+        cursor.execute("COMMIT")
+        line_bot_api.reply_message(event.reply_token, message)
+    if '小杯熱拿鐵放入購物車' in msg:
+        msg = re.findall('\\d',msg)
+        num = msg[0]
+        message = TextSendMessage(text='已加入購物車')
+        cursor.execute(f'SELECT hs_latte FROM "public"."main" WHERE "uid"'+ f"= '{user_id}';")
+        data = cursor.fetchall()
+        num = int(data[0][0])+int(num)
+        cursor.execute(f'UPDATE "public"."main" SET "hs_latte"'+f"= '{num}'"+'WHERE "uid"'+f" = '{user_id}';")
+        cursor.execute("COMMIT")
+        line_bot_api.reply_message(event.reply_token, message)
+    if '中杯熱拿鐵放入購物車' in msg:
+        msg = re.findall('\\d',msg)
+        num = msg[0]
+        message = TextSendMessage(text='已加入購物車')
+        cursor.execute(f'SELECT hm_latte FROM "public"."main" WHERE "uid"'+ f"= '{user_id}';")
+        data = cursor.fetchall()
+        num = int(data[0][0])+int(num)
+        cursor.execute(f'UPDATE "public"."main" SET "hm_latte"'+f"= '{num}'"+'WHERE "uid"'+f" = '{user_id}';")
+        cursor.execute("COMMIT")
+        line_bot_api.reply_message(event.reply_token, message)
+    if '中杯冰拿鐵放入購物車' in msg:
+        msg = re.findall('\\d',msg)
+        num = msg[0]
+        message = TextSendMessage(text='已加入購物車')
+        cursor.execute(f'SELECT im_latte FROM "public"."main" WHERE "uid"'+ f"= '{user_id}';")
+        data = cursor.fetchall()
+        num = int(data[0][0])+int(num)
+        cursor.execute(f'UPDATE "public"."main" SET "im_latte"'+f"= '{num}'"+'WHERE "uid"'+f" = '{user_id}';")
+        cursor.execute("COMMIT")
+        line_bot_api.reply_message(event.reply_token, message)
+    if '小杯熱美式放入購物車' in msg:
+        msg = re.findall('\\d',msg)
+        num = msg[0]
+        message = TextSendMessage(text='已加入購物車')
+        cursor.execute(f'SELECT hs_coffee FROM "public"."main" WHERE "uid"'+ f"= '{user_id}';")
+        data = cursor.fetchall()
+        num = int(data[0][0])+int(num)
+        cursor.execute(f'UPDATE "public"."main" SET "hs_coffee"'+f"= '{num}'"+'WHERE "uid"'+f" = '{user_id}';")
+        cursor.execute("COMMIT")
+        line_bot_api.reply_message(event.reply_token, message)
+    if '中杯熱美式放入購物車' in msg:
+        msg = re.findall('\\d',msg)
+        num = msg[0]
+        message = TextSendMessage(text='已加入購物車')
+        cursor.execute(f'SELECT hｍ_coffee FROM "public"."main" WHERE "uid"'+ f"= '{user_id}';")
+        data = cursor.fetchall()
+        num = int(data[0][0])+int(num)
+        cursor.execute(f'UPDATE "public"."main" SET "hｍ_coffee"'+f"= '{num}'"+'WHERE "uid"'+f" = '{user_id}';")
+        cursor.execute("COMMIT")
+        line_bot_api.reply_message(event.reply_token, message)
+    if '中杯冰美式放入購物車' in msg:
+        msg = re.findall('\\d',msg)
+        num = msg[0]
+        message = TextSendMessage(text='已加入購物車')
+        cursor.execute(f'SELECT im_coffee FROM "public"."main" WHERE "uid"'+ f"= '{user_id}';")
+        data = cursor.fetchall()
+        num = int(data[0][0])+int(num)
+        cursor.execute(f'UPDATE "public"."main" SET "im_coffee"'+f"= '{num}'"+'WHERE "uid"'+f" = '{user_id}';")
         cursor.execute("COMMIT")
         line_bot_api.reply_message(event.reply_token, message)
 
