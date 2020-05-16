@@ -260,6 +260,11 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, message)
 
     if '線上點餐' == msg:
+        try:
+            cursor.execute(f'INSERT INTO "public"."main" ("uid","choco_cake","origin_cake","honey_cake","hm_latte","hs_latte","im_latte","hm_coffee","hs_coffee","im_coffee","time")'+f"VALUES ('{uid}','0','0','0','0','0','0','0','0','0','0');")
+            cursor.execute("COMMIT")
+        except:
+            cursor.execute("ROLLBACK")
         message = menu_Carousel_Template()
         line_bot_api.reply_message(event.reply_token, message)
     
@@ -296,12 +301,14 @@ def handle_message(event):
         message = ButtonsTemplate_send_message(product)
         line_bot_api.reply_message(event.reply_token, message)
 
-    if '放入購物車' in msg:
+    if '巧克力鬆餅放入購物車' in msg:
         msg = re.findall('\\d',msg)
         num = msg[0]
-        message = TextSendMessage(text='OK')
-        
-        cursor.execute(f'INSERT INTO "public"."main" ("uid","choco_cake")'+f"VALUES ('{user_id}', '{num}');")
+        message = TextSendMessage(text='已加入購物車')
+        cursor.execute(f'SELECT choco_cake FROM "public"."main" WHERE "uid"'+ f"= '{uid}';")
+        data = cursor.fetchall()
+        num = int(data[0][0])+int(num)
+        cursor.execute(f'UPDATE "public"."{table_name}" SET "number_"'+f"= '{num_inventory}'"+'WHERE "inventory"'+f" = '{inventory_name}';")
         cursor.execute("COMMIT")
         line_bot_api.reply_message(event.reply_token, message)
 
