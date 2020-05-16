@@ -276,6 +276,10 @@ def handle_message(event):
         product = '巧克力鬆餅'
         message = ButtonsTemplate_send_message(product)
         line_bot_api.reply_message(event.reply_token, message)
+    if '訂購蜂蜜鬆餅' == msg:
+        product = '蜂蜜鬆餅'
+        message = ButtonsTemplate_send_message(product)
+        line_bot_api.reply_message(event.reply_token, message)    
     if '訂購小杯熱拿鐵' == msg:
         product = '小杯熱拿鐵'
         message = ButtonsTemplate_send_message(product)
