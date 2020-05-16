@@ -92,16 +92,15 @@ def buttons_message11():
     message = TemplateSendMessage(
         alt_text='Confirm template',
         template=ConfirmTemplate(
-            text='Are you sure?',
+            text='確認要送出購物車嗎?',
             actions=[
-                PostbackAction(
-                    label='postback',
-                    text='postback text',
-                    data='action=buy&itemid=1'
+                MessageAction(
+                    label='確認',
+                    text='確認送出購物車'
                 ),
                 MessageAction(
-                    label='message',
-                    text='message text1 '
+                    label='稍後一下好了',
+                    text='線上點餐'
                 )
             ]
         )
@@ -284,7 +283,7 @@ def handle_message(event):
         ddd = TextSendMessage(text=a)
         line_bot_api.reply_message(event.reply_token, ddd)
 
-    if '555' == msg:
+    if '分鐘後取餐' == msg:
         message = buttons_message11()
         line_bot_api.reply_message(event.reply_token, message)
 
@@ -463,7 +462,8 @@ def handle_message(event):
         message = ButtonsTemplate_time()
         line_bot_api.reply_message(event.reply_token, message)
     
-        
+    
+
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
