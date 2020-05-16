@@ -493,7 +493,7 @@ def handle_message(event):
             txt = re.sub(',$','',txt)    
             txt = txt+',共計'+str(price)+'元'
             if txt == ',共計0元':
-                txt = '購物車裡沒有任何商品
+                txt = '購物車裡沒有任何商品'
             message = f'顧客編號（{user_id}）'+str(txt)+f"{num}0分鐘後取餐"
         token = 'ElXeVpTWhTv6mWIuEYOyUP7NPlFRw3jOVWNT54Pa6s1' #for cup%go
         lineNotifyMessage(token, message)
