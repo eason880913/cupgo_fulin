@@ -308,7 +308,7 @@ def handle_message(event):
         cursor.execute(f'SELECT choco_cake FROM "public"."main" WHERE "uid"'+ f"= '{user_id}';")
         data = cursor.fetchall()
         num = int(data[0][0])+int(num)
-        cursor.execute(f'UPDATE "public"."{table_name}" SET "number_"'+f"= '{num_inventory}'"+'WHERE "inventory"'+f" = '{inventory_name}';")
+        cursor.execute(f'UPDATE "public"."main" SET "choco_cake"'+f"= '{num}'"+'WHERE "uid"'+f" = '{user_id}';")
         cursor.execute("COMMIT")
         line_bot_api.reply_message(event.reply_token, message)
 
