@@ -106,7 +106,7 @@ def buttons_message11(sendtime):
             actions=[
                 MessageAction(
                     label='確認',
-                    text=f'確認送出購物車,{sendtime}0分鐘後取餐'
+                    text=f'確認送出購物車,{sendtime}0分鐘以後取餐'
                 ),
                 MessageAction(
                     label='稍後一下好了',
