@@ -271,6 +271,10 @@ def handle_message(event):
     if '已加入購物車' == msg:
         message = menu_Carousel_Template()
         line_bot_api.reply_message(event.reply_token, message)
+    if '已清空購物車' == msg:
+        message = menu_Carousel_Template()
+        line_bot_api.reply_message(event.reply_token, message)
+
 
     if '訂購原味鬆餅' == msg:
         product = '原味鬆餅'
@@ -418,6 +422,13 @@ def handle_message(event):
             message = TextSendMessage(text=txt)
             line_bot_api.reply_message(event.reply_token, message)
 
+    if '清空我的購物車' == msg:
+        cursor.execute(f'DELETE FROM "public"."main" WHERE "uid"'+f" = '{uid}';")
+        cursor.execute("COMMIT")
+        cursor.execute(f'INSERT INTO "public"."main" ("uid","choco_cake","origin_cake","honey_cake","hm_latte","hs_latte","im_latte","hm_coffee","hs_coffee","im_coffee","time")'+f"VALUES ('{uid}','0','0','0','0','0','0','0','0','0','0');")
+        cursor.execute("COMMIT")
+        message = TextSendMessage(text='已清空購物車')
+        line_bot_api.reply_message(event.reply_token, message)
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
