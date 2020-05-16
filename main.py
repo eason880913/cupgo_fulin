@@ -443,7 +443,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, message)
 
     if '查詢我的購物車' == msg:
-        cursor.execute(f'SELECT * FROM "public"."main";')
+        cursor.execute(f'SELECT * FROM "public"."main" WHERE "uid"'+ f"= '{user_id}';")
         data = cursor.fetchall()
         for i in data:
             price = 0
@@ -471,7 +471,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, message)
 
     if '送出我的購物車' == msg:
-        cursor.execute(f'SELECT * FROM "public"."main";')
+        cursor.execute(f'SELECT * FROM "public"."main" WHERE "uid"'+ f"= '{user_id}';")
         data = cursor.fetchall()
         for i in data:
             price = 0
@@ -497,7 +497,7 @@ def handle_message(event):
     if '確認送出購物車' in msg:
         msg = re.findall('\\d',msg)
         num = msg[0]#單個字
-        cursor.execute(f'SELECT * FROM "public"."main";')
+        cursor.execute(f'SELECT * FROM "public"."main" WHERE "uid"'+ f"= '{user_id}';")
         data = cursor.fetchall()
         for i in data:
             price = 0
