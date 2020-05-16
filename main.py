@@ -264,6 +264,7 @@ def handle_message(event):
             cursor.execute(f'INSERT INTO "public"."main" ("uid","choco_cake","origin_cake","honey_cake","hm_latte","hs_latte","im_latte","hm_coffee","hs_coffee","im_coffee","time")'+f"VALUES ('{uid}','0','0','0','0','0','0','0','0','0','0');")
             cursor.execute("COMMIT")
         except:
+            print('fail')
             cursor.execute("ROLLBACK")
         message = menu_Carousel_Template()
         line_bot_api.reply_message(event.reply_token, message)
