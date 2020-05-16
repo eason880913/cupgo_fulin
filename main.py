@@ -308,7 +308,7 @@ def handle_message(event):
         cursor.execute(f'SELECT origin_cake FROM "public"."main" WHERE "uid"'+ f"= '{user_id}';")
         data = cursor.fetchall()
         num = int(data[0][0])+int(num)
-        cursor.execute(f'UPDATE "public"."main" SET "origin"'+f"= '{num}'"+'WHERE "uid"'+f" = '{user_id}';")
+        cursor.execute(f'UPDATE "public"."main" SET "origin_cake"'+f"= '{num}'"+'WHERE "uid"'+f" = '{user_id}';")
         cursor.execute("COMMIT")
         line_bot_api.reply_message(event.reply_token, message)
     if '巧克力鬆餅放入購物車' in msg:
