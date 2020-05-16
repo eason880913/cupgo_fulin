@@ -268,6 +268,10 @@ def handle_message(event):
         message = menu_Carousel_Template()
         line_bot_api.reply_message(event.reply_token, message)
     
+    if '已加入購物車' == msg:
+        message = menu_Carousel_Template()
+        line_bot_api.reply_message(event.reply_token, message)
+
     if '訂購原味鬆餅' == msg:
         product = '原味鬆餅'
         message = ButtonsTemplate_send_message(product)
@@ -396,6 +400,23 @@ def handle_message(event):
         cursor.execute("COMMIT")
         line_bot_api.reply_message(event.reply_token, message)
 
+    if '查詢我的購物車' == msg:
+        cursor.execute(f'SELECT * FROM "public"."main";')
+        data = cursor.fetchall()
+        for i in data:
+            price = 0
+            price_list = [0,40,35,40,45,35,45,45,35,45]
+            txt = ''
+            lsit = [0,'巧克力鬆餅','原味鬆餅','蜂蜜鬆餅','中杯熱拿鐵','小杯熱拿鐵','中杯冰拿鐵','中杯熱美式','小杯熱美式','中杯冰美式']
+            for j in range(1,len(i)):
+                if i[j] == '0':
+                    continue
+                txt = txt+str(i[j])+'個'+str(lsit[j]+',')
+                price = price + int(price_list[j])*int(i[j])
+            txt = re.sub(',$','',txt)    
+            txt = txt+',共計'+str(price)+'元'
+            message = TextSendMessage(text=txt)
+            line_bot_api.reply_message(event.reply_token, message)
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
