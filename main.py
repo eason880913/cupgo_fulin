@@ -283,7 +283,7 @@ def handle_message(event):
         ddd = TextSendMessage(text=a)
         line_bot_api.reply_message(event.reply_token, ddd)
 
-    if '分鐘後取餐' == msg:
+    if '分鐘後取餐' in msg:
         message = buttons_message11()
         line_bot_api.reply_message(event.reply_token, message)
 
