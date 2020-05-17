@@ -272,12 +272,19 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, image_message)
 
+    if '優惠內容' == msg:
+        image_message = ImageSendMessage(
+        original_content_url='https://imgur.com/VgZmbie.jpg',
+        preview_image_url='https://imgur.com/VgZmbie.jpg'
+        )
+        line_bot_api.reply_message(event.reply_token, image_message)
+
     if '最近活動' == msg:
         image_message = ImageSendMessage(
         original_content_url='https://i.imgur.com/yxkG6KD.jpg',
         preview_image_url='https://i.imgur.com/yxkG6KD.jpg'
         )
-        line_bot_api.reply_message(event.reply_token, image_message)
+        line_bot_api.reply_message(event.reply_token, image_message)    
 
     if '今日油價' == msg:
         ans1 = requests.get('https://gas.goodlife.tw/')
