@@ -267,8 +267,8 @@ def handle_message(event):
     user_id = event.source.user_id  
     if '查詢menu' == msg:
         image_message = ImageSendMessage(
-        original_content_url='https://i.imgur.com/TtPRnen.jpg',
-        preview_image_url='https://i.imgur.com/TtPRnen.jpg'
+        original_content_url='https://i.imgur.com/YAJzTII.jpg',
+        preview_image_url='https://i.imgur.com/YAJzTII.jpg'
         )
         line_bot_api.reply_message(event.reply_token, image_message)
 
