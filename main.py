@@ -126,15 +126,15 @@ def ButtonsTemplate_time():
             text='請選擇您要的時間',
             actions=[
                 MessageTemplateAction(
-                    label='10分鐘後取餐',
+                    label='10分鐘後自行取餐',
                     text=f'送出購物車10分鐘後取餐'
                 ),
                 MessageTemplateAction(
-                    label='20分鐘後取餐',
+                    label='20分鐘後自行取餐',
                     text=f'送出購物車20分鐘後取餐'
                 ),
                 MessageTemplateAction(
-                    label='30分鐘後取餐',
+                    label='30分鐘後自行取餐',
                     text=f'送出購物車30分鐘後取餐'
                 ),
                 MessageTemplateAction(
