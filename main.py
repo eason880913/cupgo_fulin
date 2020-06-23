@@ -367,7 +367,7 @@ def handle_message(event):
         num = int(data[0][0])+int(num)
         cursor.execute(f'UPDATE "public"."main" SET "origin_cake"'+f"= '{num}'"+'WHERE "uid"'+f" = '{user_id}';")
         cursor.execute("COMMIT")
-        ine_bot_api.push_message(user_id, TextSendMessage(text='已加入購物車'))
+        line_bot_api.push_message(user_id, TextSendMessage(text='已加入購物車'))
         # line_bot_api.reply_message(event.reply_token, message)
         message = menu_Carousel_Template()
         line_bot_api.reply_message(event.reply_token, message)
