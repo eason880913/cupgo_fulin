@@ -477,7 +477,8 @@ def handle_message(event):
             txt = txt+',共計'+str(price)+'元'
             if txt == ',共計0元':
                 txt = '購物車裡沒有任何商品'
-            message = TextSendMessage(text=txt)
+            ine_bot_api.push_message(user_id, TextSendMessage(text=f'{txt}'))
+            message = menu_Carousel_Template()
             line_bot_api.reply_message(event.reply_token, message)
 
     if '清空我的購物車' == msg:
@@ -485,7 +486,8 @@ def handle_message(event):
         cursor.execute("COMMIT")
         cursor.execute(f'INSERT INTO "public"."main" ("uid","choco_cake","origin_cake","honey_cake","hm_latte","hs_latte","im_latte","hm_coffee","hs_coffee","im_coffee","time")'+f"VALUES ('{user_id}','0','0','0','0','0','0','0','0','0','0');")
         cursor.execute("COMMIT")
-        message = TextSendMessage(text='已清空購物車')
+        message = menu_Carousel_Template()
+        line_bot_api.push_message(user_id, TextSendMessage(text='已清空購物車'))
         line_bot_api.reply_message(event.reply_token, message)
 
     if '送出我的購物車' == msg:
