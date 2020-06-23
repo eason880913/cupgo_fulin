@@ -368,6 +368,8 @@ def handle_message(event):
         cursor.execute(f'UPDATE "public"."main" SET "origin_cake"'+f"= '{num}'"+'WHERE "uid"'+f" = '{user_id}';")
         cursor.execute("COMMIT")
         line_bot_api.reply_message(event.reply_token, message)
+        message = menu_Carousel_Template()
+        line_bot_api.reply_message(event.reply_token, message)
     if '巧克力鬆餅放入購物車' in msg:
         msg = re.findall('\\d',msg)
         num = msg[0]
