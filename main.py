@@ -196,7 +196,9 @@ def menu_Carousel_Template():
                         MessageTemplateAction(
                             label='送出我的購物車',
                             text='送出我的購物車'
-                        ),
+                        )
+                    ]
+                ),
                 CarouselColumn(
                     # thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Number_1_in_green_rounded_square.svg/200px-Number_1_in_green_rounded_square.svg.png',
                     title='訂購鬆餅',
@@ -252,10 +254,7 @@ def menu_Carousel_Template():
                             label='Ice/M $45',
                             text='訂購中杯冰美式'
                         )
-                    ]
-                
-                        )
-                    ]
+                    ]      
                 )
             ]
         )
