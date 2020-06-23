@@ -477,7 +477,7 @@ def handle_message(event):
             txt = txt+',共計'+str(price)+'元'
             if txt == ',共計0元':
                 txt = '購物車裡沒有任何商品'
-            ine_bot_api.push_message(user_id, TextSendMessage(text=f'{txt}'))
+            line_bot_api.push_message(user_id, TextSendMessage(text=f'{txt}'))
             message = menu_Carousel_Template()
             line_bot_api.reply_message(event.reply_token, message)
 
