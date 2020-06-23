@@ -181,6 +181,23 @@ def menu_Carousel_Template():
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
+                    # thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Number_3_in_yellow_rounded_square.svg/200px-Number_3_in_yellow_rounded_square.svg.png',
+                    title='購物車',
+                    text='請選擇您要的操作',
+                    actions=[
+                        MessageTemplateAction(
+                            label='查詢我的購物車',
+                            text='查詢我的購物車'
+                        ),
+                        MessageTemplateAction(
+                            label='清空我的購物車',
+                            text='清空我的購物車'
+                        ),
+                        MessageTemplateAction(
+                            label='送出我的購物車',
+                            text='送出我的購物車'
+                        ),
+                CarouselColumn(
                     # thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Number_1_in_green_rounded_square.svg/200px-Number_1_in_green_rounded_square.svg.png',
                     title='訂購鬆餅',
                     text='請選擇您要的商品',
@@ -236,23 +253,7 @@ def menu_Carousel_Template():
                             text='訂購中杯冰美式'
                         )
                     ]
-                ),
-                CarouselColumn(
-                    # thumbnail_image_url='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Number_3_in_yellow_rounded_square.svg/200px-Number_3_in_yellow_rounded_square.svg.png',
-                    title='購物車',
-                    text='請選擇您要的操作',
-                    actions=[
-                        MessageTemplateAction(
-                            label='查詢我的購物車',
-                            text='查詢我的購物車'
-                        ),
-                        MessageTemplateAction(
-                            label='清空我的購物車',
-                            text='清空我的購物車'
-                        ),
-                        MessageTemplateAction(
-                            label='送出我的購物車',
-                            text='送出我的購物車'
+                
                         )
                     ]
                 )
@@ -361,7 +362,7 @@ def handle_message(event):
     if '原味鬆餅放入購物車' in msg:
         msg = re.findall('\\d',msg)
         num = msg[0]
-        # message = TextSendMessage(text='已加入購物車')
+        # message = menu_Carousel_Template()
         cursor.execute(f'SELECT origin_cake FROM "public"."main" WHERE "uid"'+ f"= '{user_id}';")
         data = cursor.fetchall()
         num = int(data[0][0])+int(num)
@@ -374,82 +375,90 @@ def handle_message(event):
     if '巧克力鬆餅放入購物車' in msg:
         msg = re.findall('\\d',msg)
         num = msg[0]
-        message = TextSendMessage(text='已加入購物車')
+        message = menu_Carousel_Template()
         cursor.execute(f'SELECT choco_cake FROM "public"."main" WHERE "uid"'+ f"= '{user_id}';")
         data = cursor.fetchall()
         num = int(data[0][0])+int(num)
         cursor.execute(f'UPDATE "public"."main" SET "choco_cake"'+f"= '{num}'"+'WHERE "uid"'+f" = '{user_id}';")
         cursor.execute("COMMIT")
+        line_bot_api.push_message(user_id, TextSendMessage(text='已加入購物車'))
         line_bot_api.reply_message(event.reply_token, message)
     if '蜂蜜鬆餅放入購物車' in msg:
         msg = re.findall('\\d',msg)
         num = msg[0]
-        message = TextSendMessage(text='已加入購物車')
+        message = menu_Carousel_Template()
         cursor.execute(f'SELECT honey_cake FROM "public"."main" WHERE "uid"'+ f"= '{user_id}';")
         data = cursor.fetchall()
         num = int(data[0][0])+int(num)
         cursor.execute(f'UPDATE "public"."main" SET "honey_cake"'+f"= '{num}'"+'WHERE "uid"'+f" = '{user_id}';")
         cursor.execute("COMMIT")
+        line_bot_api.push_message(user_id, TextSendMessage(text='已加入購物車'))
         line_bot_api.reply_message(event.reply_token, message)
     if '小杯熱拿鐵放入購物車' in msg:
         msg = re.findall('\\d',msg)
         num = msg[0]
-        message = TextSendMessage(text='已加入購物車')
+        message = menu_Carousel_Template()
         cursor.execute(f'SELECT hs_latte FROM "public"."main" WHERE "uid"'+ f"= '{user_id}';")
         data = cursor.fetchall()
         num = int(data[0][0])+int(num)
         cursor.execute(f'UPDATE "public"."main" SET "hs_latte"'+f"= '{num}'"+'WHERE "uid"'+f" = '{user_id}';")
         cursor.execute("COMMIT")
+        line_bot_api.push_message(user_id, TextSendMessage(text='已加入購物車'))
         line_bot_api.reply_message(event.reply_token, message)
     if '中杯熱拿鐵放入購物車' in msg:
         msg = re.findall('\\d',msg)
         num = msg[0]
-        message = TextSendMessage(text='已加入購物車')
+        message = menu_Carousel_Template()
         cursor.execute(f'SELECT hm_latte FROM "public"."main" WHERE "uid"'+ f"= '{user_id}';")
         data = cursor.fetchall()
         num = int(data[0][0])+int(num)
         cursor.execute(f'UPDATE "public"."main" SET "hm_latte"'+f"= '{num}'"+'WHERE "uid"'+f" = '{user_id}';")
         cursor.execute("COMMIT")
+        line_bot_api.push_message(user_id, TextSendMessage(text='已加入購物車'))
         line_bot_api.reply_message(event.reply_token, message)
     if '中杯冰拿鐵放入購物車' in msg:
         msg = re.findall('\\d',msg)
         num = msg[0]
-        message = TextSendMessage(text='已加入購物車')
+        message = menu_Carousel_Template()
         cursor.execute(f'SELECT im_latte FROM "public"."main" WHERE "uid"'+ f"= '{user_id}';")
         data = cursor.fetchall()
         num = int(data[0][0])+int(num)
         cursor.execute(f'UPDATE "public"."main" SET "im_latte"'+f"= '{num}'"+'WHERE "uid"'+f" = '{user_id}';")
         cursor.execute("COMMIT")
+        line_bot_api.push_message(user_id, TextSendMessage(text='已加入購物車'))
         line_bot_api.reply_message(event.reply_token, message)
     if '小杯熱美式放入購物車' in msg:
         msg = re.findall('\\d',msg)
         num = msg[0]
-        message = TextSendMessage(text='已加入購物車')
+        message = menu_Carousel_Template()
         cursor.execute(f'SELECT hs_coffee FROM "public"."main" WHERE "uid"'+ f"= '{user_id}';")
         data = cursor.fetchall()
         num = int(data[0][0])+int(num)
         cursor.execute(f'UPDATE "public"."main" SET "hs_coffee"'+f"= '{num}'"+'WHERE "uid"'+f" = '{user_id}';")
         cursor.execute("COMMIT")
+        line_bot_api.push_message(user_id, TextSendMessage(text='已加入購物車'))
         line_bot_api.reply_message(event.reply_token, message)
     if '中杯熱美式放入購物車' in msg:
         msg = re.findall('\\d',msg)
         num = msg[0]
-        message = TextSendMessage(text='已加入購物車')
+        message = menu_Carousel_Template()
         cursor.execute(f'SELECT hm_coffee FROM "public"."main" WHERE "uid"'+ f"= '{user_id}';")
         data = cursor.fetchall()
         num = int(data[0][0])+int(num)
         cursor.execute(f'UPDATE "public"."main" SET "hm_coffee"'+f"= '{num}'"+'WHERE "uid"'+f" = '{user_id}';")
         cursor.execute("COMMIT")
+        line_bot_api.push_message(user_id, TextSendMessage(text='已加入購物車'))
         line_bot_api.reply_message(event.reply_token, message)
     if '中杯冰美式放入購物車' in msg:
         msg = re.findall('\\d',msg)
         num = msg[0]
-        message = TextSendMessage(text='已加入購物車')
+        message = menu_Carousel_Template()
         cursor.execute(f'SELECT im_coffee FROM "public"."main" WHERE "uid"'+ f"= '{user_id}';")
         data = cursor.fetchall()
         num = int(data[0][0])+int(num)
         cursor.execute(f'UPDATE "public"."main" SET "im_coffee"'+f"= '{num}'"+'WHERE "uid"'+f" = '{user_id}';")
         cursor.execute("COMMIT")
+        line_bot_api.push_message(user_id, TextSendMessage(text='已加入購物車'))
         line_bot_api.reply_message(event.reply_token, message)
 
     if '查詢我的購物車' == msg:
