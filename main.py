@@ -534,7 +534,7 @@ def handle_message(event):
                 txt = '購物車裡沒有任何商品'
             message = f'顧客編號（{user_id}）'+str(txt)+f"{num}0分鐘後取餐"
         token = 'eygaxqfwXnxSRI50yfdeYWXg9E4lzZav6qHRSv47bmX' #for 測試
-        # lineNotifyMessage(token, message)
+        lineNotifyMessage(token, message)
         message = TextSendMessage(text='您的預購訂單已成功，請務必來取餐喔')
         line_bot_api.reply_message(event.reply_token, message)
         cursor.execute(f'DELETE FROM "public"."main" WHERE "uid"'+f" = '{user_id}';")
